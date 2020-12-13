@@ -11,7 +11,7 @@ public class PlayerHead : MonoBehaviour
     private Transform playerBody;
     private float horizontalRotation = 0.0f;
     private float verticalRotation = 0.0f;
-    private float rotationLimit = 80.0f;
+    private float rotationLimit = 30.0f;
     private float headMovementSpeed = 55.0f;
 
     private void Start()
@@ -28,6 +28,7 @@ public class PlayerHead : MonoBehaviour
         direction += changesPosition;
 
         direction.y = Mathf.Clamp(direction.y, -rotationLimit, rotationLimit);
+        direction.x = Mathf.Clamp(direction.x, -rotationLimit, rotationLimit);
         transform.localRotation = Quaternion.AngleAxis(-direction.y * headMovementSpeed * Time.deltaTime, Vector3.right);
         playerBody.localRotation = Quaternion.AngleAxis(direction.x * headMovementSpeed * Time.deltaTime, Vector3.up);
     }
